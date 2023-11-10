@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine Dashboard</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://wallpapercave.com/wp/wp9166985.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;            
+        }
+
+        .header {
+            background-color: #624545;
+            color: #mnp;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .dashboard-item {
+            padding: 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .dashboard-item:hover {
+            background-color: skyblue;
+        }
+
+        .dashboard-item h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bff;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            background-color: pink;
+            color: #mnp;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: lightyellow;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Books Dashboard</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="dashboard">
+            <div class="dashboard-item">
+                <h2>Add New Books </h2>
+                
+                
+                
+<form  action="#"  th:action="@{/indexx}"   >
+ 
+  
+  
+                      <input type="submit" value="Add Books" class="btn-primary">
+  
+</form>
+                
+           
+                            
+                
+<form  action="#"  th:action="@{/show}"   >
+ 
+  
+  
+                      <input type="submit" value="Show Books" class="btn-primary">
+  
+</form>
+
+
+              <form  action="#"  th:action="@{/showhistory}"   >
+ 
+  
+  
+                      <input type="submit" value=" Books   History"  class="btn-primary">
+  
+</form>
+            </div>
+            <div class="dashboard-item">
+                <h2>Search Medicine</h2>
+                
+                
+                <form  action="#" th:object="${obj}" th:action="@{/search}"   >
+ 
+   <label for="title" >Search Books</label>
+<input type="text" id="title" name="title" th:field="*{title}">
+  
+
+  
+  
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+                
+                
+                
+                        
+<form  action="#"  th:action="@{/outofstockk}"   >
+ 
+  
+  
+                      <input type="submit" value="Out Of Stock" class="btn-primary">
+  
+</form>
+          
+          
+              
+                
+                
+                
+                
+            </div>
+            <div class="dashboard-item">
+                <h2>Costomer Demand</h2>
+                               
+<form  action="#"  th:action="@{/demands}"   >
+ 
+  
+  
+                      <input type="submit" value="Costumers Demands" class="btn-primary">
+  
+</form>
+              
+               <form  action="#"  th:action="@{/showdemands}"   >
+ 
+  
+  
+                      <input type="submit" value="Show Demands" class="btn-primary">
+  
+</form>
+            </div>
+            <div class="dashboard-item">
+                <h2>Billing</h2>
+                <form action="ShowBill" method="GET">
+                    <input type="submit" value="Show Bill" class="btn-primary">
+                </form>
+                <form action="ClientHistory" method="GET">
+                    <input type="submit" value="Client History" class="btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchForm = document.querySelector("#searchForm");
+
+            searchForm.addEventListener("submit", function (event) {
+                const searchInput = document.querySelector("#searchname");
+                if (searchInput.value.trim() === "") {
+                    event.preventDefault(); // Prevent form submission
+                    alert("Please enter a search term.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

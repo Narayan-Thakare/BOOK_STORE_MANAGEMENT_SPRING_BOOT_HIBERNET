@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+
+  <table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Language</th>
+          
+            <th>Quantity</th>
+                        <th>Date</th>
+            
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="book : ${show}">
+            <td th:text="${book.title}">Default Title</td>
+            <td th:text="${book.language}">Default Language</td>
+          
+            <td th:text="${book.quantity}">0</td>
+          
+                        <td th:text="${book.date}">0</td>
+            <td>
+                <a th:href="@{'/deletedemands/' + ${book.id}}">Delete</a>
+                <a th:href="@{'/update/' + ${book.id}}">Update</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+</body>
+</html>

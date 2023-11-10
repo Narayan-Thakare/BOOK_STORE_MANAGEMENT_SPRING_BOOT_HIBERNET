@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+<form  action="#" th:object="${obj}" th:action="@{/insert}"   >
+    <div class="form-group">
+        <label for="title" class="mr-sm-2">Title</label>
+        <input type="text" th:field="*{title}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="author" class="mr-sm-2">Author</label>
+        <input type="text" th:field="*{author}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="language" class="mr-sm-2">Language</label>
+        <select class="custom-select mr-sm-2" th:field="*{language}">
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="Marathi">Marathi</option>
+            <option value="Hindi">Hindi</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="genre" class="mr-sm-2">Genre</label>
+        <select class="custom-select mr-sm-2" th:field="*{genre}">
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Thery">Thery</option>
+                        <option value="Fight">Fight</option>
+            
+        </select>
+    </div>
+    
+    
+     <div class="form-group">
+        <label for="title" class="mr-sm-2">Number Of Pages</label>
+        <input type="text" th:field="*{number_of_pages}" class="form-control">
+    </div>
+    
+       <div class="form-group">
+        <label for="title" class="mr-sm-2">Quantity</label>
+        <input type="text" th:field="*{quantity}" class="form-control">
+    </div>
+    
+       <div class="form-group">
+        <label for="title" class="mr-sm-2">Rate</label>
+        <input type="text" th:field="*{rate}" class="form-control">
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary mb-2">Add The Books</button>
+</form>
+
+
+
+</body>
+</html>

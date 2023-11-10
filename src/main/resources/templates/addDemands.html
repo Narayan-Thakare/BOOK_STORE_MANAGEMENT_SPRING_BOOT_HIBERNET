@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+<form  action="#" th:object="${obj}" th:action="@{/adddemand}"   >
+    <div class="form-group">
+        <label for="title" class="mr-sm-2">Title</label>
+        <input type="text" th:field="*{title}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="language" class="mr-sm-2">Language</label>
+        <select class="custom-select mr-sm-2" th:field="*{language}">
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="Marathi">Marathi</option>
+            <option value="Hindi">Hindi</option>
+        </select>
+    </div>
+
+ 
+    
+   
+       <div class="form-group">
+        <label for="title" class="mr-sm-2">Quantity</label>
+        <input type="text" th:field="*{quantity}" class="form-control">
+    </div>
+    
+    
+
+    <button type="submit" class="btn btn-primary mb-2">Add The Books</button>
+</form>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
