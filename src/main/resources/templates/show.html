@@ -22,6 +22,7 @@
             <th>Rate</th>
             <th>Total</th>
                         <th>Date</th>
+                        <th>Add Books</th>
             
             <th>Actions</th>
         </tr>
@@ -37,6 +38,10 @@
             <td th:text="${book.rate}">0</td>
             <td th:text="${book.quantity * book.rate}">0</td>
                         <td th:text="${book.date}">0</td>
+                        
+               <td>
+                <a th:href="@{'/addBook/' + ${book.id}}">Add Books</a>
+            </td>          
             <td>
                 <a th:href="@{'/delete/' + ${book.id}}">Delete</a>
                 <a th:href="@{'/update/' + ${book.id}}">Update</a>

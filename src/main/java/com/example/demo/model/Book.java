@@ -10,11 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 
 @Entity
-@Table(name="Bookss")
+@Table(name="Booksss")
 public class Book {
 
 	
@@ -32,8 +33,10 @@ public class Book {
 	private String number_of_pages;
 	private String genre;
 	private Timestamp date;
-
 	
+
+	@Transient
+    private int newQuantity;
 	
 	 @PrePersist
 	   protected void onCreate() {
@@ -220,7 +223,13 @@ public class Book {
 		this.date = date;
 	}
 
+	  public int getNewQuantity() {
+	        return newQuantity;
+	    }
 
+	    public void setNewQuantity(int newQuantity) {
+	        this.newQuantity = newQuantity;
+	    }
 
 	public Book(int id, int quantity, int rate, double total, String title, String author, String language,
 			String number_of_pages, String genre, Timestamp date) {
@@ -244,11 +253,11 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
-
+/////////////////////////////////////////////////////
 
 	
 
-
+ 
 
 	
 	

@@ -142,6 +142,56 @@ public String updateStudent(@ModelAttribute Book updatedStudent) {
 
 	    //////////////////////////////////////////
 
+
+
+
+
+@RequestMapping("/addBook/{id}")
+public ModelAndView showUpdateFormm(@PathVariable("id") Integer id) {
+    Optional<Book> book = stu.findById(id);
+
+    ModelAndView mv = new ModelAndView("addbooks.html");
+    mv.addObject("book", book.orElse(null));
+    mv.addObject("newQuantity", 0);
+    // or any default value
+    return mv;
+}
+
+
+@PostMapping("/addupdatebook")
+public String updateBook(@ModelAttribute Book updateBook, @RequestParam("newQuantity") int newQuantity) {
+    Optional<Book> optionalOldBook = stu.findById(updateBook.getId());
+
+    if (optionalOldBook.isPresent()) {
+        Book oldBook = optionalOldBook.get();
+
+        // Add the new quantity to the old quantity
+        int oldQuantity = oldBook.getQuantity();
+        int totalQuantity = oldQuantity + newQuantity;
+
+        // Set the updated quantity to the book
+        updateBook.setQuantity(totalQuantity);
+
+        // Save the updated book data
+        stu.save(updateBook);
+    }
+
+    return "redirect:/show";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////
+
 @RequestMapping("/search")
 public ModelAndView searchBooks(@RequestParam("title") String title) {
     List<Book> searchResults = stu.findByTitleContaining(title);
@@ -156,6 +206,16 @@ public ModelAndView searchBooks(@RequestParam("title") String title) {
 
 
 
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
 
 @RequestMapping("/outofstockk")
 ModelAndView myfun244(@ModelAttribute("obj") Book s1) {
@@ -230,10 +290,25 @@ public String myfun43(@PathVariable("id") Integer id) {
     return "redirect:/showdemands";
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+@RequestMapping("/updateDemands/{id}")
+public ModelAndView showUpdateForm1(@PathVariable("id") Integer id) {
+    Optional<Demand> demands = drp.findById(id);
+
+    ModelAndView mv = new ModelAndView("updatedemandsdata.html");
+    mv.addObject("demands", demands.orElse(null)); // Pass the student to the update form
+    return mv;
+}
 
 
-	    
+@PostMapping("/updateDemands")
+public String updateDemands(@ModelAttribute Demand updateDemands) {
+    drp.save(updateDemands); // Save the updated student data
+    return "redirect:/showdemands"; // Redirect to the student list page after update
+}
+
+	    /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    
 }

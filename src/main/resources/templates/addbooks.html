@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+</head>
+<body>
+
+<form th:action="@{/addupdatebook}" method="post" th:object="${book}">
+    <input type="hidden" th:field="*{id}" />
+    
+    <input type="hidden" th:field="*{title}" />
+    <input type="hidden" th:field="*{author}" />
+    <input type="hidden" th:field="*{language}" />
+    <input type="hidden" th:field="*{genre}" />
+    <input type="hidden" th:field="*{number_of_pages}" />
+    <input type="hidden" th:field="*{rate}" />
+    <input type="hidden" th:field="*{date}" />
+        
+    <label>New Quantity </label>
+<input type="text" th:field="*{newQuantity}" /><br/>
+
+    <!-- Calculate updated quantity and store it in a hidden field -->
+<input type="hidden" th:field="*{quantity}"  /><br/>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

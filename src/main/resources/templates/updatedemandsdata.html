@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+<form th:action="@{/updateDemands}" method="post" th:object="${demands}">
+    <input type="hidden" th:field="*{id}" />
+    
+    
+    
+      <label>title: </label>
+    <input type="text" th:field="*{title}" /><br/>
+    
+
+   
+    <label>language: </label>
+    <input type="text" th:field="*{language}" /><br/>
+
+
+   
+    
+
+   
+
+    <label>quantity: </label>
+    <input type="text" th:field="*{quantity}" /><br/>
+
+
+   
+
+   
+
+    <input type="hidden" th:field="*{date}" /><br/>
+
+
+
+
+
+
+
+
+
+
+    <button type="submit">Update</button>
+</form>
+
+
+
+
+
+</body>
+</html>
