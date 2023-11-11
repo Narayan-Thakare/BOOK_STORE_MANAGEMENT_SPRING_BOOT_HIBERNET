@@ -197,12 +197,23 @@
             </div>
             <div class="dashboard-item">
                 <h2>Billing</h2>
-                <form action="ShowBill" method="GET">
-                    <input type="submit" value="Show Bill" class="btn-primary">
-                </form>
-                <form action="ClientHistory" method="GET">
-                    <input type="submit" value="Client History" class="btn-primary">
-                </form>
+                
+                
+                
+                <form  action="#"  th:action="@{/generatedbill}"   >
+ 
+  
+  
+                      <input type="submit" value="Generated Bill" class="btn-primary">
+  
+</form>
+                 <form  action="#"  th:action="@{/clientshow}"   >
+ 
+  
+  
+                      <input type="submit" value="Client History" class="btn-primary">
+  
+</form>
             </div>
         </div>
     </div>

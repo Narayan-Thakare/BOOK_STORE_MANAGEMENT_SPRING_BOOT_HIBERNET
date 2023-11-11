@@ -23,6 +23,7 @@
             <th>Total</th>
                         <th>Date</th>
                         <th>Add Books</th>
+                                    <th>sell Books</th>
             
             <th>Actions</th>
         </tr>
@@ -41,7 +42,10 @@
                         
                <td>
                 <a th:href="@{'/addBook/' + ${book.id}}">Add Books</a>
-            </td>          
+            </td>   
+            <td>
+                <a th:href="@{'/sellBook/' + ${book.id}}">Sell Books</a>
+            </td>         
             <td>
                 <a th:href="@{'/delete/' + ${book.id}}">Delete</a>
                 <a th:href="@{'/update/' + ${book.id}}">Update</a>

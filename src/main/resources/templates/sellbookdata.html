@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<form th:action="@{/sellupdate}" method="post" th:object="${book}">
+    <input type="hidden" th:field="*{id}" />
+    
+    
+    
+      <label>title: </label>
+    <input type="text" th:field="*{title}" /><br/>
+    
+
+    <label>author: </label>
+    <input type="text" th:field="*{author}" /><br/>
+
+    <label>language: </label>
+    <input type="text" th:field="*{language}" /><br/>
+
+
+    <label>genre: </label>
+    <input type="text" th:field="*{genre}" /><br/>
+    
+
+    <label>number_of_pages: </label>
+    <input type="text" th:field="*{number_of_pages}" /><br/>
+
+   <label>Quantity: </label>
+<input type="text" th:field="*{quantity}" /><br/>
+
+<label>Quantity: </label>
+<input type="text" th:field="*{newQuantity}"  /><br/>
+
+   
+   
+    <label>rate: </label>
+    <input type="text" th:field="*{rate}" /><br/>
+    
+
+   
+
+    <input type="hidden" th:field="*{date}" /><br/>
+
+
+
+
+
+
+
+
+
+
+    <button type="submit">Update</button>
+</form>
+
+
+</body>
+</html>

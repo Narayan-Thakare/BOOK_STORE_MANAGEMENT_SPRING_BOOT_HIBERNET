@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Book;
+import com.example.demo.model.ClientData;
 import com.example.demo.model.Demand;
+import com.example.demo.model.Sellbooks;
 import com.example.demo.repo.BookRepo;
+import com.example.demo.repo.ClientRpo;
 import com.example.demo.repo.DemandRepo;
+import com.example.demo.repo.SellRepo;
 
 
 @Controller
@@ -33,9 +37,15 @@ public class MyController {
 	 
 	 @Autowired
 	 private DemandRepo drp;
-	  
+	 
+	 @Autowired
+	 private SellRepo slrp; 
+	 
+	 @Autowired
+	 private  ClientRpo clrp;
+	 
 	//////////////////////////////////////////////////////////////////////////////////////  
-	    @RequestMapping("/test")
+	    @RequestMapping("/")
 	    String myfun(Model m) {
 	        Book s = new Book();
 
@@ -311,4 +321,140 @@ public String updateDemands(@ModelAttribute Demand updateDemands) {
 
 	    /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    
+
+
+@RequestMapping("/sellBook/{id}")
+public ModelAndView sellform(@PathVariable("id") Integer id) {
+    Optional<Book> book = stu.findById(id);
+
+    ModelAndView mv = new ModelAndView("sellbookdata.html");
+    mv.addObject("book", book.orElse(null)); // Pass the student to the update form
+    return mv;
+}
+
+
+
+
+
+@PostMapping("/sellupdate")
+public String selldata(@ModelAttribute Sellbooks updateBook, @RequestParam("newQuantity") int newQuantity) {
+    Optional<Book> optionalOldBook = stu.findById(updateBook.getId());
+
+    if (optionalOldBook.isPresent()) {
+        Book oldBook = optionalOldBook.get();
+
+        // Add the new quantity to the old quantity
+        int oldQuantity = oldBook.getQuantity();
+        int updatedQuantity = oldQuantity - newQuantity;
+
+        // Set the updated quantity to the book
+        oldBook.setQuantity(updatedQuantity);
+        
+        // Save the updated quantity to the stu repository
+        stu.save(oldBook);
+
+        // Save the updated book data to slrp repository
+        slrp.save(updateBook);
+    }
+
+    return "redirect:/show";
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+@RequestMapping("/generatedbill")
+ModelAndView myfun245(@ModelAttribute("obj") Sellbooks s1) {
+    System.out.println("Data in u object from After " + s1);
+
+    // Assuming stu.findAll() returns a List of Students
+    List<Sellbooks> slist = slrp.findAll();
+
+    ModelAndView mv = new ModelAndView("bill.html");
+    mv.addObject("show", slist);
+
+    return mv; 
+}
+
+
+
+
+
+
+
+
+
+
+/*
+ * 
+ * @RequestMapping("/generatedata") String myfun11(Model m) { ClientData cd =
+ * new ClientData();
+ * 
+ * System.out.println("Data in	 u object from " + cd);
+ * m.addAttribute("obj",cd); slrp.gettatal("tatal",total);
+ * 
+ * return "Clientgeneratedbill.html"; }
+ */
+@RequestMapping("/generatedata")
+public String generateData(Model model) {
+    // Retrieve total from SellRepo
+    Double totalFromSellRepo = slrp.calculateTotal();
+
+    // Generate ClientData
+    ClientData cd = new ClientData();
+    cd.setTotal(totalFromSellRepo);
+
+    // Save the ClientData or perform other operations if needed
+    clrp.save(cd);
+
+    // Add the ClientData object to the model
+    model.addAttribute("obj", cd);
+
+    return "Clientgeneratedbill.html";
+}
+
+
+
+
+
+@RequestMapping("/clientdata")
+public ModelAndView handleClientData(@ModelAttribute("obj") ClientData cl) {
+    System.out.println("Data in u object from After " + cl);
+
+    // Save the ClientData
+    clrp.save(cl);
+
+    // Assuming slrp is a repository for Sellbooks, delete all data
+    slrp.deleteAll();
+
+    ModelAndView mv = new ModelAndView("index.html");
+    mv.addObject("ob", cl);
+
+    return mv;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+@RequestMapping("/clientshow")
+ModelAndView myfun2436(@ModelAttribute("obj") ClientData s1) {
+    System.out.println("Data in u object from After " + s1);
+
+    // Assuming stu.findAll() returns a List of Students
+//    List<ClientData> slist = clrp.findAll();
+    List<ClientData> slist = clrp.findAll(Sort.by(Sort.Direction.DESC, "id"));
+
+    ModelAndView mv = new ModelAndView("showclient.html");
+    mv.addObject("show", slist);
+
+    return mv; 
+}
+
+
+
+
+
 }

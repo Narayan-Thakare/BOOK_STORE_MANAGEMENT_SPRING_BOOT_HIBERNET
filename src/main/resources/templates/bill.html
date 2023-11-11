@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Table</title>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Language</th>
+            <th>Number of Pages</th>
+            <th>Genre</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Date</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="book : ${show}">
+            <td th:text="${book.title}">Default Title</td>
+            <td th:text="${book.author}">Default Author</td>
+            <td th:text="${book.language}">Default Language</td>
+            <td th:text="${book.number_of_pages}">0</td>
+            <td th:text="${book.genre}">Default Genre</td>
+            <td th:text="${book.newQuantity}">0</td>
+            <td th:text="${book.rate}">0</td>
+            <td th:text="${book.date}">0</td>
+                        <td th:text="${book.newQuantity * book.rate}">0</td>
+            
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7"></td>
+            <td id="totalCell">0</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var totalCell = document.getElementById("totalCell");
+        var total = 0;
+
+        // Loop through each row in the table body
+        var tableBodyRows = document.querySelectorAll("tbody tr");
+        tableBodyRows.forEach(function (row) {
+            // Get the total value from the last cell in each row and add it to the total variable
+            var rowTotal = parseFloat(row.lastElementChild.textContent);
+            total += isNaN(rowTotal) ? 0 : rowTotal;
+        });
+
+        // Set the total value in the total cell
+        totalCell.textContent = total.toFixed(2); // You can adjust the number of decimal places as needed
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form  action="#"  th:action="@{/generatedata}"   >
+ 
+  
+  
+                      <input type="submit" value="Generate Bill" class="btn-primary">
+  
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
