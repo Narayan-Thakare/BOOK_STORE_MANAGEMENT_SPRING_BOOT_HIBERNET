@@ -3,12 +3,66 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+
+
+  <style>
+    a.button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #00DA98; /* Greenish color for the button */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4CAF50; /* Dark green color for table headers */
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light grayish color for even rows */
+    }
+
+    a {
+        text-decoration: none;
+        margin-right: 10px;
+        color: #333;
+    }
+
+    a:hover {
+        color: #DDDBA5; /* Dark green color on hover */
+    }
+</style>
+
+
+
 </head>
 <body>
 
 
 
-
+<h1>Book Dashboard of History</h1>
+    <a href="/" class="button">HOME</a>
 
   <table>
     <thead>
@@ -38,8 +92,8 @@
             <td th:text="${book.quantity * book.rate}">0</td>
                         <td th:text="${book.date}">0</td>
             <td>
-                <a th:href="@{'/delete/' + ${book.id}}">Delete</a>
-                <a th:href="@{'/update/' + ${book.id}}">Update</a>
+                <a th:href="@{'/delete/' + ${book.id}}" class="button"  >Delete</a>
+                <a th:href="@{'/update/' + ${book.id}}" class="button"    >Update</a>
             </td>
         </tr>
     </tbody>
